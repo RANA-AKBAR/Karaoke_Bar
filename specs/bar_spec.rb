@@ -20,6 +20,7 @@ class Testbar < MiniTest::Test
     @drink5 = Drink.new("Whiskey", 5.0)
     @drink6 = Drink.new("Orange", 2.50)
     @drink7 = Drink.new("Apple", 2.10)
+    @drink18 = Drink.new("jojo", 3.10)
 
     @drinks=
     { :drink1 =>{:quantity => 5, :info => @drink1}, :drink3 =>{:quantity => 2, :info => @drink3}, :drink4 =>{:quantity => 1, :info => @drink4} }
@@ -94,7 +95,7 @@ class Testbar < MiniTest::Test
 
   def test_sales
     (@bar1.admission(@guest1, :room2))
-    assert_equal(5, @bar1.sales  )
+    assert_equal(5, @bar1.sales)
   end
 
   def test_wooho()
@@ -103,8 +104,19 @@ class Testbar < MiniTest::Test
 
 
   def test_bar_sells_drink
-    @bar1.drink_sale(@guest1, :drink1)
+    @bar1.drink_sold(:drink1, @guest1)
     assert_equal(1, @bar1.sales)
+  end
+
+  def test_drinks_to_bar
+    @bar1.add_drinks_to_bar(@drink18, 10, "drink2")
+    assert_equal(4, @drinks.count())
+  end
+
+
+  def test_drinks_to_bar__includes__drink_being_made
+    @bar1.add_drinks_to_bar_____whilst_making_drink__class_object("jojo", 2.0, 10, "drink2")
+    assert_equal(4, @drinks.count())
   end
 
 
