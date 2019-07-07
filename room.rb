@@ -22,6 +22,8 @@ class Room
     return @guests.count
   end
 
-
+  def full()
+    return @guests.count() >= @capacity
+  end
 
 end

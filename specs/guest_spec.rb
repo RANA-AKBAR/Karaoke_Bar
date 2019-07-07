@@ -36,6 +36,10 @@ def test_fav_Song
 assert_equal("past", @guest5.fav_song.name)
 end
 
+def test_change
+  assert_equal(5, @guest1.charge(5))
+end
+
 
 
 end
