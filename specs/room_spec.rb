@@ -27,13 +27,12 @@ class RoomTest < MiniTest::Test
     @songs2 = [@song3, @song4, @song5]
 
 
-    @room1 = Room.new(@guests, @songs)
-    @room2 = Room.new(@guests, @songs2)
-    @room3 = Room.new(@guests, @songs)
-    @room4 = Room.new(@guests, @songs2)
-    @room6 = Room.new(@guests, @songs)
-    @room5 = Room.new(@guests, @songs2)
-    @room6 = Room.new()
+    @room1 = Room.new(@guests, @songs, 4 )
+    @room2 = Room.new(@guests, @songs2, 3)
+    @room3 = Room.new(@guests, @songs, 3)
+    @room4 = Room.new(@guests, @songs2,2 )
+    @room6 = Room.new(@guests, @songs 6)
+    @room5 = Room.new(@guests, @songs2, 1)
 
   end
 
@@ -48,6 +47,16 @@ class RoomTest < MiniTest::Test
 
   def test_room_numbers
     assert_equal(3, @room1.number)
+  end
+
+  def test_room_checkin
+    @room1.check_in(@guest4)
+    assert_equal(4, @room1.number)
+  end
+
+  def test_room_check_out
+    @room1.check_out(@guest1)
+    assert_equal(2, @room1.number)
   end
 
 end
